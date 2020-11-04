@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4042626568304467393}
   - component: {fileID: 4042626568305794529}
   - component: {fileID: 4042626568306892577}
+  - component: {fileID: -6370981673701670388}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Enviroment
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-6370981673701670388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4042626568304951777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652810fafe858184281dbcf67990f115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectSpeed: -0.1
