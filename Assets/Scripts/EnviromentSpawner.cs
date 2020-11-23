@@ -10,7 +10,7 @@ public class EnviromentSpawner : MonoBehaviour
     public GameObject grass;
     public GameObject plant;
     float timeElapsed = 0;  
-    float spawnCycle = 0.5f;
+    float spawnCycle = 0.4f;
 
     void Update()
     {
@@ -41,7 +41,7 @@ public class EnviromentSpawner : MonoBehaviour
                 temp = plant;
             }
 
-            spawnCycle = Random.Range(0.25f, 2f);
+            spawnCycle = Random.Range(0.4f, 1f);
 
             GameObject spawnObject = (GameObject)Instantiate(temp);
             
