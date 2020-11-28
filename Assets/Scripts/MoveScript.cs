@@ -8,6 +8,22 @@ public class MoveScript : MonoBehaviour
 
     void Update()
     {
+        
         transform.position = transform.position += new Vector3(0, 0, objectSpeed);
+    }
+
+
+    public void StopMovement() {
+        objectSpeed = 0.0f;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "DeadZone")
+        {
+            if (GetComponent<GameObject>() != null) {
+                Destroy(this);
+            }
+        }
     }
 }

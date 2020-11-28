@@ -7,6 +7,7 @@ public class ObstacleSpawner : MonoBehaviour
 {
     public GameObject rock;
     public GameObject ufo;
+    public GameObject gem;
     float timeElapsed = 0;
     float spawnCycle = 0.5f;
 
@@ -18,18 +19,18 @@ public class ObstacleSpawner : MonoBehaviour
             GameObject temp;
             for (int i = 0; i <= 2; i++)
             {
-                int random = Random.Range(0, 4);
-                if (random == 0)
+                int random = Random.Range(0,11);
+                if (random >= 0 && random < 5)
                 {
                     temp = rock;
                 }
-                else if (random == 1)
+                else if (random >= 5 && random < 10)
                 {
                     temp = ufo;
                 }
                 else
                 {
-                    temp = new GameObject();
+                    temp = gem;
                 }
 
                 

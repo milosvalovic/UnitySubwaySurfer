@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Obstacle
   - Enviroment
+  - DeadZone
+  - PowerUP
   layers:
   - Default
   - TransparentFX
