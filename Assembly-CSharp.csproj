@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Menu Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\EnviromentSpawner.cs" />
     <Compile Include="Assets\Scripts\MoveScript.cs" />
     <Compile Include="Assets\Scripts\ObstacleSpawner.cs" />
