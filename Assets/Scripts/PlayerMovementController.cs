@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -22,12 +23,12 @@ public class PlayerMovementController : MonoBehaviour
     public AudioSource footsteps;
     public AudioSource hitSound;
     public AudioSource powerupSound;
-
+    public AudioMixerGroup mixerGroup;
+    
     private float playerMoveDirection = 0;
     private Vector2 fingerDown;
     private Vector2 fingerUp;
     public bool detectSwipeOnlyAfterRelease = false;
-
     
 
     public float SWIPE_THRESHOLD = 100f;
@@ -35,6 +36,10 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Start()
     {
+        hitSound.outputAudioMixerGroup = mixerGroup;
+        footsteps.outputAudioMixerGroup = mixerGroup;
+        powerupSound.outputAudioMixerGroup = mixerGroup;
+
         currentX = transform.position.x;
         controller = GetComponent<CharacterController>();
         footsteps.Play();
