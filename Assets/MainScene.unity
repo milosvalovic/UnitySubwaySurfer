@@ -214,12 +214,13 @@ AudioSource:
   m_GameObject: {fileID: 170740722}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5982513998265985343, guid: d50b92e2a5435b9438dee5d7841f7949,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 802e49451aa5457469fed7b9b9535ec1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.33
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1136,5 +1137,7 @@ MonoBehaviour:
   footsteps: {fileID: 774313931}
   hitSound: {fileID: 262389710}
   powerupSound: {fileID: 1218210291}
+  mixerGroup: {fileID: -4676944406038381977, guid: d50b92e2a5435b9438dee5d7841f7949,
+    type: 2}
   detectSwipeOnlyAfterRelease: 0
   SWIPE_THRESHOLD: 20
