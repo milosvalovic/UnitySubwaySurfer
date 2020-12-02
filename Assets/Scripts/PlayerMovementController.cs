@@ -234,7 +234,7 @@ public class PlayerMovementController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Obstacle") {
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             DestroyObject(other.gameObject);
             hitSound.Play();
         }
