@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class MoveScript : MonoBehaviour
 {
-    public float objectSpeed = -0.5f;
+    public float objectSpeed = -0.4f;
+
+    private void Start()
+    {
+        if (Application.platform == RuntimePlatform.WindowsEditor)
+            objectSpeed = objectSpeed * 0.1f;
+        else
+            objectSpeed = objectSpeed = objectSpeed * 1f;
+    }
 
     void Update()
     {
         
+
         transform.position = transform.position += new Vector3(0, 0, objectSpeed);
     }
 
