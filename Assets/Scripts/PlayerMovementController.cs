@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class PlayerMovementController : MonoBehaviour
     private Vector2 fingerDown;
     private Vector2 fingerUp;
     public bool detectSwipeOnlyAfterRelease = false;
+
+    public Text score;
     
 
     public float SWIPE_THRESHOLD = 100f;
@@ -239,6 +242,7 @@ public class PlayerMovementController : MonoBehaviour
         if ((other.tag == "PowerUP")) {
             powerupSound.Play();
             DestroyObject(other.gameObject);
+            score.text = (int.Parse(score.text) + 1) + "";
         }
     }
 
