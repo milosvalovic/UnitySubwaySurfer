@@ -9,8 +9,8 @@ public class PlayerMovementController : MonoBehaviour
 {
     //Variables
     public float speed = 2.0f;
-    public float jumpSpeed = 20.0f;
-    public float gravity = 20.0f;
+    public float jumpSpeed = 25.0f;
+    public float gravity = 12.5f;
     public float flipTime = .5f;
     public float flipTimeDifference = 0.0f;
 
@@ -34,7 +34,7 @@ public class PlayerMovementController : MonoBehaviour
     public Text score;
     
 
-    public float SWIPE_THRESHOLD = 100f;
+    public float SWIPE_THRESHOLD = 200f;
 
 
     private void Start()
@@ -51,7 +51,8 @@ public class PlayerMovementController : MonoBehaviour
     void FixedUpdate()
     {
         
-        currentX = transform.position.x;
+        currentX = transform.position.x;       
+
 
         foreach (Touch touch in Input.touches)
         {
@@ -78,6 +79,8 @@ public class PlayerMovementController : MonoBehaviour
                 checkSwipe();
             }
         }
+
+        
 
         playerMoveDirection += Input.GetAxis("Horizontal");
 
@@ -168,7 +171,7 @@ public class PlayerMovementController : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) || didCrouch)
+        if (didCrouch)
         {
             controller.height = 0.06f;
             controller.center = new Vector3(0, 0.09f, -0.01f);
@@ -181,6 +184,7 @@ public class PlayerMovementController : MonoBehaviour
         flipTimeDifference += Time.deltaTime;
         if (flipTimeDifference > flipTime) {
             GetComponent<Animator>().SetBool("Crouch", false);
+            
             controller.height = 0.24f;
             controller.center = new Vector3(0, 0.125f, -0.01f);
         }
@@ -194,9 +198,13 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0)
+            footsteps.Stop();
+        else
+            footsteps.Play();
 
-        
-        
+
+
         if (transform.position.y < 0.1f)
         {
 
@@ -210,24 +218,32 @@ public class PlayerMovementController : MonoBehaviour
                 didJump = true;
                 footsteps.Stop();
             }
-                
 
-            
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                didCrouch = true;
+            }
 
         }
 
 
         Debug.Log(controller.isGrounded.ToString());
-        moveDirection.y -= gravity * Time.deltaTime;
+        moveDirection.y -= gravity * Time.deltaTime * 2;
         controller.Move(moveDirection * Time.deltaTime);
 
-        
-        //moveDirection.y -= gravity * Time.deltaTime;
-        //Making the character move
-        //controller.Move(moveDirection * Time.deltaTime);
-        //Applying gravity to the controller
-        //moveDirection.y -= gravity * Time.deltaTime;
-        //Making the character move
+        //Korekcia
+        if (transform.position.y < -0.2f)
+        {
+            transform.position = new Vector3(0, 0.7f, 0);
+        }
+        if (transform.position.x < -2.5f)
+        {
+            transform.position = new Vector3(-2, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x > 2.5f)
+        {
+            transform.position = new Vector3(2, transform.position.y, transform.position.z);
+        }
 
     }
 
@@ -237,6 +253,7 @@ public class PlayerMovementController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             DestroyObject(other.gameObject);
             hitSound.Play();
+            Time.timeScale = 0;
         }
 
         if ((other.tag == "PowerUP")) {
@@ -256,7 +273,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 OnSwipeUp();
             }
-            else if (fingerDown.y - fingerUp.y < 0)//Down swipe
+            else if (fingerDown.y - (fingerUp.y-10) < 0)//Down swipe
             {
                 OnSwipeDown();
             }

@@ -55,7 +55,7 @@ public class ObstacleSpawner : MonoBehaviour
 
                 spawnObject.transform.position = new Vector3(posX, pos.y, transform.position.z);
             }
-            spawnCycle = Random.Range(0.5f, 2f);
+            spawnCycle = Random.Range(1.5f, 2.5f);
             timeElapsed = 0;
         }
     }

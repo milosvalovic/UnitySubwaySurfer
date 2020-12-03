@@ -67,6 +67,7 @@
     <Compile Include="Assets\Menu Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Menu Assets\Scripts\OptionsMenu.cs" />
     <Compile Include="Assets\Scripts\AnimationScript.cs" />
+    <Compile Include="Assets\Scripts\DeathScreen.cs" />
     <Compile Include="Assets\Scripts\EnviromentSpawner.cs" />
     <Compile Include="Assets\Scripts\MoveScript.cs" />
     <Compile Include="Assets\Scripts\ObjectDestroyer.cs" />
