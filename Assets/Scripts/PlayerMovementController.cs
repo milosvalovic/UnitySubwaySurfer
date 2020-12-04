@@ -32,13 +32,16 @@ public class PlayerMovementController : MonoBehaviour
     public bool detectSwipeOnlyAfterRelease = false;
 
     public Text score;
-    
+    public GameObject pauseMenu;
+
 
     public float SWIPE_THRESHOLD = 200f;
 
 
     private void Start()
     {
+        Time.timeScale = 1;
+
         hitSound.outputAudioMixerGroup = mixerGroup;
         footsteps.outputAudioMixerGroup = mixerGroup;
         powerupSound.outputAudioMixerGroup = mixerGroup;
@@ -245,6 +248,23 @@ public class PlayerMovementController : MonoBehaviour
             transform.position = new Vector3(2, transform.position.y, transform.position.z);
         }
 
+    }
+
+    public void OpenPauseMenu ()
+    {
+        Time.timeScale = 0;
+        pauseMenu.SetActive(true);
+    }
+
+    public void ClosePauseMenu ()
+    {
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
+    }
+
+    public void MainMenu ()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     private void OnTriggerEnter(Collider other)
