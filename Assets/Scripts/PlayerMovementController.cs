@@ -54,34 +54,7 @@ public class PlayerMovementController : MonoBehaviour
     void FixedUpdate()
     {
         
-        currentX = transform.position.x;       
-
-
-        foreach (Touch touch in Input.touches)
-        {
-            if (touch.phase == TouchPhase.Began)
-            {
-                fingerUp = touch.position;
-                fingerDown = touch.position;
-            }
-
-            //Detects Swipe while finger is still moving
-            if (touch.phase == TouchPhase.Moved)
-            {
-                if (!detectSwipeOnlyAfterRelease)
-                {
-                    fingerDown = touch.position;
-                    checkSwipe();
-                }
-            }
-
-            //Detects swipe after finger is released
-            if (touch.phase == TouchPhase.Ended)
-            {
-                fingerDown = touch.position;
-                checkSwipe();
-            }
-        }
+        
 
         
 
@@ -127,7 +100,6 @@ public class PlayerMovementController : MonoBehaviour
                 {
                     moveDirection = new Vector3(direction, 0, 0);
                     moveDirection = transform.TransformDirection(moveDirection);
-                    //Multiply it by speed.
                     moveDirection *= speed;
                 }
             }
@@ -137,7 +109,6 @@ public class PlayerMovementController : MonoBehaviour
                 {
                     moveDirection = new Vector3(direction, 0, 0);
                     moveDirection = transform.TransformDirection(moveDirection);
-                    //Multiply it by speed.
                     moveDirection *= speed;
                 }
             }
@@ -150,7 +121,6 @@ public class PlayerMovementController : MonoBehaviour
                 {
                     moveDirection = new Vector3(direction, 0, 0);
                     moveDirection = transform.TransformDirection(moveDirection);
-                    //Multiply it by speed.
                     moveDirection *= speed;
                 }
             }
@@ -160,7 +130,6 @@ public class PlayerMovementController : MonoBehaviour
                 {
                     moveDirection = new Vector3(direction, 0, 0);
                     moveDirection = transform.TransformDirection(moveDirection);
-                    //Multiply it by speed.
                     moveDirection *= speed;
                 }
             }
@@ -201,11 +170,39 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
+        currentX = transform.position.x;
+
+
+        foreach (Touch touch in Input.touches)
+        {
+            if (touch.phase == TouchPhase.Began)
+            {
+                fingerUp = touch.position;
+                fingerDown = touch.position;
+            }
+
+            //Detects Swipe while finger is still moving
+            if (touch.phase == TouchPhase.Moved)
+            {
+                if (!detectSwipeOnlyAfterRelease)
+                {
+                    fingerDown = touch.position;
+                    checkSwipe();
+                }
+            }
+
+            //Detects swipe after finger is released
+            if (touch.phase == TouchPhase.Ended)
+            {
+                fingerDown = touch.position;
+                checkSwipe();
+            }
+        }
+
         if (Time.timeScale == 0)
             footsteps.Stop();
         else
             footsteps.Play();
-
 
 
         if (transform.position.y < 0.1f)
