@@ -53,10 +53,6 @@ public class PlayerMovementController : MonoBehaviour
 
     void FixedUpdate()
     {
-        
-        
-
-        
 
         playerMoveDirection += Input.GetAxis("Horizontal");
 
@@ -201,8 +197,6 @@ public class PlayerMovementController : MonoBehaviour
 
         if (Time.timeScale == 0)
             footsteps.Stop();
-        else
-            footsteps.Play();
 
 
         if (transform.position.y < 0.1f)
